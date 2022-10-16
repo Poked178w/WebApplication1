@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
+using System.Linq;
 
 namespace WebApplication1.Controllers
 {
@@ -25,9 +26,10 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
-        public ViewResult RsvpForm(GuestResponse guestrespoonse)
+        public ViewResult RsvpForm(GuestResponse response)
         {
-            return View();
+            Repository.AddResponse(response);
+            return View("Thanks", response);
         }
 
 
@@ -45,6 +47,11 @@ namespace WebApplication1.Controllers
         public IActionResult Test()
         {
             return Content("Hello World!!!!! \n Никита пришел в чат!");
+        }
+
+        public ViewResult ListResponses()
+        {
+            return View(Repository.Responses.Where(r => r.WillAttend == true));
         }
     }
 }
