@@ -15,8 +15,21 @@ namespace WebApplication1.Controllers
 
         public ViewResult Index()
         {
+            int hour = DateTime.Now.Hour;
+            ViewBag.Greeting = hour < 12 ? "Добрый день" : "Добрый вечер";
             return View("MyView");
         }
+        [HttpGet]
+        public ViewResult RsvpForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ViewResult RsvpForm(GuestResponse guestrespoonse)
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {
