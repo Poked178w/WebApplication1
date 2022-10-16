@@ -13,9 +13,9 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            return View("MyView");
         }
 
         public IActionResult Privacy()
