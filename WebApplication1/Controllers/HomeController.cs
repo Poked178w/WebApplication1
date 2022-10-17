@@ -3,7 +3,7 @@ using System.Diagnostics;
 using WebApplication1.Models;
 using System.Linq;
 
-namespace WebApplication1.Controllers
+namespace PartyInvites.Controllers
 {
     public class HomeController : Controller
     {
@@ -28,8 +28,16 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ViewResult RsvpForm(GuestResponse response)
         {
-            Repository.AddResponse(response);
-            return View("Thanks", response);
+            if (ModelState.IsValid)
+            {
+                Repository.AddResponse(response);
+                return View("Thanks", response);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
 

@@ -2,7 +2,8 @@
 using System.Net.NetworkInformation;
 using WebApplication1.Models;
 
-namespace WebApplication1.Models {
+namespace WebApplication1.Models
+{
 public static class Repository {
     private static List<GuestResponse> responses =
     new List<GuestResponse>();
