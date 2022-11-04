@@ -1,4 +1,4 @@
-﻿namespace PartyInvites.Models
+﻿namespace MvcApp.Models
 {
     public class Player
     {
@@ -8,3 +8,5 @@
         public int Score { get; set; }
         public int Victories { get; set; }
     }
+
+}
