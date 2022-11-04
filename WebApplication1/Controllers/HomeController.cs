@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebApplication1.Models;
 using System.Linq;
+using PartyInvites.Models;
+using Microsoft.EntityFrameworkCore;
+using MvcApp.Models;
 
 namespace PartyInvites.Controllers
 {
@@ -60,6 +62,18 @@ namespace PartyInvites.Controllers
         public ViewResult ListResponses()
         {
             return View(Repository.Responses.Where(r => r.WillAttend == true));
+        }
+    }
+}
+
+namespace MvcApp.Controllers
+{
+    public class HomeController : Controller
+    {
+        ApplicationContext db;
+        public HomeController(ApplicationContext context)
+        {
+            db = context;
         }
     }
 }
