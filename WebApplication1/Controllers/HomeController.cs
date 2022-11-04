@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MvcApp.Models;
+using SortState.Models
+using PlayersContest.Models
+
 
 namespace MvcApp.Controllers
 {
