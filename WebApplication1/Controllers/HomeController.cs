@@ -8,19 +8,58 @@ namespace MvcApp.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationContext db;
-        public HomeController(ApplicationContext context)
+        PlayerContext db;
+        public HomeController(PlayerContext context)
         {
             db = context;
-        }
+            // добавим начальные данные для тестирования
+            if (!db.Companies.Any())
+            {
+                Clan sssr = new Clan { NameClan = "SSSR" };
+                Clan Disasters = new Clan { NameClan = "Disasters" };
+                Clan Falcon = new Clan { NameClan = "Falcon" };
+                Clan KillersEvil = new Clan { NameClan = "KillersEvil" };
 
-        public async Task<IActionResult> Index()
-        {
-            return View(await db.Players.ToListAsync());
+
+                Platform Android = new Platform { PlatformN = "Android" };
+                Platform IOS_Apple = new Platform { PlatformN = "IOS/Apple" };
+                Platform Steam_Mygames = new Platform { PlatformN = "Steam/MY.games" };
+
+                Player Player1 = new Player { Nickname = "WarrionCat", Clan = sssr, Id = KJFENF9, Platform = Android };
+                Player Player2 = new Player { Nickname = "Hanter3000", Clan = Disaster, Id = D47UF35, Platform = Android };
+                Player Player3 = new Player { Nickname = "Pilot-2D866IA", Clan = sssr, Id = 2D866IA, Platform = Android };
+                Player Player4 = new Player { Nickname = "HoverDOG", Clan = Falcon, Id = I8T7B5E, Platform = IOS_Apple };
+                Player Player5 = new Player { Nickname = "Pilot-CL96U8E", Clan = KillersEvil, Id = CL96U8E, Platform = Steam_Mygames };
+                Player Player6 = new Player { Nickname = "KDVKSbfsjD", Clan = KillersEvil, Id = CCE3758, Platform = Steam_Mygames };
+                Player Player7 = new Player { Nickname = "Poked178", Clan = Disaster, Id = U3Q284G, Platform = Android };
+                Player Player8 = new Player { Nickname = "keklol5D", Clan = Falcon, Id = 75D8UH3, Platform = IOS_Apple };
+
+                db.Clans.AddRange(sssr, Disasters, Falcon, KillersEvil);
+                db.Platforms.AddRange(Android, IOS_Apple, Steam_Mygames);
+                db.Players.AddRange(Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8);
+                db.SaveChanges();
+            }
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Index(SortState sortOrder = SortState.NameAsc)
         {
-            return View();
+            IQueryable<Plater>? users = db.Players.Include(x => x.Company);
+
+            ViewData["IdSort"] = sortOrder == SortState.IdAsc ? SortState.IdDesc : SortState.IdAsc;
+            ViewData["NicknameSort"] = sortOrder == SortState.NicknameAsc ? SortState.NicknameDesc : SortState.NicknameAsc;
+            ViewData["PlafformSort"] = sortOrder == SortState.PlatformAsc ? SortState.PlarformDesc : SortState.PlatformAsc;
+            ViewData["ClanSort"] = sortOrder == SortState.ClanAsc ? SortState.ClanDesc : SortState.ClanAsc;
+
+            players = sortOrder switch
+            {
+                SortState.NicknameAsc => players.OrderBy(s => s.Nickname),
+                SortState.NicknameDesc => players.OrderByDescending(s => s.Nickname),
+                SortState.PlatformAsc => players.OrderBy(s => s.PlatformN),
+                SortState.PlatformDesc => players.OrderByDescending(s => s.PlatformN),
+                SortState.ClanAsc => players.OrderBy(s => s.Clan!.NameClan),
+                SortState.ClanDesc => players.OrderByDescending(s => s.Clan!.NameClan),
+                _ => players.OrderBy(s => s.Nickname),
+            };
+            return View(await users.AsNoTracking().ToListAsync());
         }
         [HttpPost]
         public async Task<IActionResult> Create(Player Player)
@@ -29,5 +68,38 @@ namespace MvcApp.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        // Код для удаления параметров участника Т
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                Player Player = new Player { Id = id.Value };
+                db.Entry(Player).State = EntityState.Deleted;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+        }
+        // Код для изменения параметров участника Т
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id != null)
+            {
+                Player? Player = await db.Players.FirstOrDefaultAsync(p => p.Id == id);
+                if (player != null) return View(Player);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(player player)
+        {
+            db.Player.Update(Player);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

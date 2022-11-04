@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Nickname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Clan)
+                @Html.DisplayNameFor(model => model.Platform)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WillAttend)
+                @Html.DisplayNameFor(model => model.Clan)
             </th>
             <th></th>
         </tr>
@@ -28,16 +28,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Nickname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Phone)
+                @Html.DisplayFor(modelItem => item.Platform)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WillAttend)
+                @Html.DisplayFor(modelItem => item.Clan)
             </td>
             <td>
         </tr>
