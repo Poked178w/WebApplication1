@@ -1,4 +1,4 @@
-﻿using MvcApp.Models;
+﻿using PartyInvites.Data.DbModels;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 

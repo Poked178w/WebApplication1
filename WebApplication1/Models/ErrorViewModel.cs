@@ -1,4 +1,4 @@
-namespace MvcApp.Models
+namespace PartyInvites.Models
 {
     public class ErrorViewModel
     {

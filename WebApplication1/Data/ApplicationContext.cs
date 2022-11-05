@@ -1,11 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PartyInvites.Data.DbModels;
 using System.Collections.Generic;
 
-namespace MvcApp.Models
+namespace PartyInvites.Data
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Player> Players { get; set; } = null!;
+        // = null!; не надо
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Clan> Clans { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
