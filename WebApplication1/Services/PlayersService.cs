@@ -61,6 +61,9 @@ public class PlayersService
         _dbContext.SaveChanges();
     }
 
+    /// <summary>
+    /// Получение списка игшроков для отображения в представлении
+    /// </summary>
     public async Task<List<Player>> GetPlayersList(SortState sortOrder, ViewDataDictionary viewData)
     {
         IQueryable<Player>? players = _dbContext.Players;
@@ -84,12 +87,18 @@ public class PlayersService
         return await players.AsNoTracking().ToListAsync();
     }
 
+    /// <summary>
+    /// Добавить игрока
+    /// </summary>
     public async Task AddPlayerAsync(Player player)
     {
         _dbContext.Players.Add(player);
         await _dbContext.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Удалить игрока
+    /// </summary>
     public async Task DeletePlayerAsync(string id)
     {
         var player = new Player { Id = id };
@@ -99,6 +108,9 @@ public class PlayersService
         await _dbContext.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Изменить игрока
+    /// </summary>
     public async Task EditPLayerAsync(Player player)
     {
         _dbContext.Players.Update(player);
