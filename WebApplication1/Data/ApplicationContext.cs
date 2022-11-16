@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PartyInvites.Data.DbModels;
-using System.Collections.Generic;
 
 namespace PartyInvites.Data
 {

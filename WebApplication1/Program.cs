@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using PartyInvites.Data;
-using PartyInvites.Models;
 using PartyInvites.Services;
 
 var builder = WebApplication.CreateBuilder(args);
