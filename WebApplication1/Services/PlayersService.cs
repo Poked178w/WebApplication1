@@ -48,11 +48,11 @@ public class PlayersService
             new() { Nickname = "WarrionCat", Clan = "sssr", Id = "KJFENF9", Platform = "Android" },
             new() { Nickname = "Hanter3000", Clan = "Disaster", Id = "D47UF35", Platform = "Android" },
             new() { Nickname = "Pilot-2D866IA", Clan = "sssr", Id = "2D866IA", Platform = "Android" },
-            new() { Nickname = "HoverDOG", Clan = "Falcon", Id = "I8T7B5E", Platform = "IOS_Apple" },
-            new() { Nickname = "Pilot-CL96U8E", Clan = "KillersEvil", Id = "CL96U8E", Platform = "Steam_Mygames" },
-            new() { Nickname = "KDVKSbfsjD", Clan = "KillersEvil", Id = "CCE3758", Platform = "Steam_Mygames" },
+            new() { Nickname = "HoverDOG", Clan = "Falcon", Id = "I8T7B5E", Platform = "IOS/Apple" },
+            new() { Nickname = "Pilot-CL96U8E", Clan = "KillersEvil", Id = "CL96U8E", Platform = "Steam/Mygames" },
+            new() { Nickname = "KDVKSbfsjD", Clan = "KillersEvil", Id = "CCE3758", Platform = "Steam/Mygames" },
             new() { Nickname = "Poked178", Clan = "Disaster", Id = "U3Q284G", Platform = "Android" },
-            new() { Nickname = "keklol5D", Clan = "Falcon", Id = "75D8UH3", Platform = "IOS_Apple" }
+            new() { Nickname = "keklol5D", Clan = "Falcon", Id = "75D8UH3", Platform = "IOS/Apple" }
         };
 
         _dbContext.Clans.AddRange(clans);
