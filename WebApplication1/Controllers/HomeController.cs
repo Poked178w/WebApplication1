@@ -75,5 +75,13 @@ namespace MvcApp.Controllers
             await _playersService.EditPLayerAsync(player);
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Страница описания вашего приложения.";
+
+            return View();
+        }
     }
 }

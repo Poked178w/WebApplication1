@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace PartyInvites.Data.DbModels
 {
@@ -6,9 +7,9 @@ namespace PartyInvites.Data.DbModels
     {
         [Key]
         public string Id { get; set; }
+        public string Password { get; set; }
         public string Nickname { get; set; }
         public string Platform { get; set; }
-        public string? ClanId { get; set; }
         public string? Clan { get; set; }
         public int Score { get; set; }
         public int Victories { get; set; }
