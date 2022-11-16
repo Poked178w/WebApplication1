@@ -1,9 +1,37 @@
-﻿@model IEnumerable<Player>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MvcApp.Models
+@model IEnumerable<Player>
 
 <h2>Список участникиков Т</h2>
 <p><a asp-action="Create">Добавить участника Т</a></p>
 <table class="table">
-    <tr><th>Id</th><th>Nickname</th><th>Platform</th><th>Clan</th><th>Score/Victories</th></tr>
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompSort">
+                Id
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompSort">
+                Nickname
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompSort">
+                Platform
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompSort">
+                Clan
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.CompSort">
+                Score/Victories
+            </a>
+        </th>
+    </tr>
     @foreach (var item in Model)
     {
         <tr>

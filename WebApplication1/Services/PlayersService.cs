@@ -70,6 +70,8 @@ public class PlayersService
 
         players = sortOrder switch
         {
+            SortState.IdAsc => players.OrderBy(s => s.Id),
+            SortState.IdDesc => players.OrderByDescending(s => s.Id),
             SortState.NicknameAsc => players.OrderBy(s => s.Nickname),
             SortState.NicknameDesc => players.OrderByDescending(s => s.Nickname),
             SortState.PlatformAsc => players.OrderBy(s => s.Platform),
