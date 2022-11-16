@@ -7,7 +7,6 @@ namespace PartyInvites.Data.DbModels
     {
         [Key]
         public string Id { get; set; }
-        public string Password { get; set; }
         public string Nickname { get; set; }
         public string Platform { get; set; }
         public string? Clan { get; set; }
