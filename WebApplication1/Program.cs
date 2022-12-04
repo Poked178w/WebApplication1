@@ -1,4 +1,5 @@
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using PartyInvites.Data;
 using PartyInvites.Services;
@@ -10,9 +11,13 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(c
 builder.Services.AddScoped<PlayersService>();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
 
 var app = builder.Build();
 
 app.MapDefaultControllerRoute();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

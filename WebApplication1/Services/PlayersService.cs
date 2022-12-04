@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PartyInvites.Data;
 using PartyInvites.Data.DbModels;
 using PartyInvites.Models;
+using System.Security.Claims;
 
 namespace PartyInvites.Services;
 
@@ -17,11 +18,19 @@ public class PlayersService
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
+    public interface IAccountService
+    {
+        Task<BaseResponse<ClaimsIdentity>> Register(RegisterModel model);
 
-    /// <summary>
-    /// Добавляем в базу начальные данные, если база пуста
-    /// </summary>
-    public void SeedData()
+        Task<BaseResponse<ClaimsIdentity>> Login(RegisterModel model);
+
+        Task<BaseResponse<bool>> ChangePassword(RegisterModel model);
+    }
+
+/// <summary>
+/// Добавляем в базу начальные данные, если база пуста
+/// </summary>
+public void SeedData()
     {
         //если данные в базе уже есть, то просто возвращаемся
         if (_dbContext.Platforms.Any())
@@ -41,6 +50,13 @@ public class PlayersService
             new() { PlatformN = "Android" },
             new() { PlatformN = "IOS/Apple" },
             new() { PlatformN = "Steam/MY.games" }
+        };
+
+        var roles = new Role[]
+        {
+            new() { RoleN = "Admin" },
+            new() { RoleN = "VIP" },
+            new() { RoleN = "Player" }
         };
 
         var players = new Player[]
@@ -100,7 +116,7 @@ public class PlayersService
     {
         var player = new Player { Id = id };
 
-        //TODO: я не уверен что это сработает, лучше использовать _dbContext.Players.Remove
+        //я не уверен что это сработает, лучше использовать _dbContext.Players.Remove
         _dbContext.Entry(player).State = EntityState.Deleted;
         await _dbContext.SaveChangesAsync();
     }

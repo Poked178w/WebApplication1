@@ -9,6 +9,7 @@ namespace PartyInvites.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<Clan> Clans { get; set; }
         public DbSet<Platform> Platforms { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {

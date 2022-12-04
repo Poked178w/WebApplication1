@@ -42,7 +42,7 @@ namespace MvcApp.Controllers
             return RedirectToAction("Index");
         }
 
-        // Код для удаления параметров участника Т
+        // Код для удаления параметров участника SR
         [HttpPost]
         public async Task<IActionResult> Delete(string? id)
         {
@@ -57,7 +57,7 @@ namespace MvcApp.Controllers
             return NotFound();
         }
 
-        // Код для изменения параметров участника Т
+        // Код для изменения параметров участника SR
         public async Task<IActionResult> Edit(string? id)
         {
             if (id is null) return NotFound();
@@ -76,7 +76,7 @@ namespace MvcApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult About()
         {
             ViewBag.Message = "Страница описания вашего приложения.";

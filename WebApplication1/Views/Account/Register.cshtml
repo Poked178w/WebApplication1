@@ -12,10 +12,16 @@
     @Html.AntiForgeryToken()
 
     <div>
-        <h4>Регистрация участника Т</h4>
+        <h4>Регистрация участника SR</h4>
         <hr />
         @Html.ValidationSummary(false)
 
+        <div>
+            Никнейм
+            <div>
+                @Html.EditorFor(model => model.Nickname)
+            </div>
+        </div>
         <div>
             Электронный адрес
             <div>
